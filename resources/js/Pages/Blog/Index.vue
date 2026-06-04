@@ -161,16 +161,15 @@ defineProps({
 
                     <!-- PAGINATION -->
                     <div
-                        v-if="posts.links && posts.links.length"
+                        v-if="posts.meta?.links?.length"
                         class="flex flex-wrap justify-center gap-3 pt-8"
                     >
                         <template
-                            v-for="(link, index) in posts.links"
+                            v-for="(link, index) in posts.meta.links"
                             :key="index"
                         >
-                            <!-- ACTIVE -->
                             <Link
-                                v-if="link && link.url"
+                                v-if="link.url"
                                 :href="link.url"
                                 v-html="link.label"
                                 class="min-w-[44px] h-11 px-4 rounded-2xl border flex items-center justify-center text-sm font-semibold transition-all duration-300"
@@ -181,10 +180,9 @@ defineProps({
                                 "
                             />
 
-                            <!-- DISABLED -->
                             <span
                                 v-else
-                                v-html="link?.label || '-'"
+                                v-html="link.label"
                                 class="min-w-[44px] h-11 px-4 rounded-2xl border border-gray-100 bg-gray-100 text-gray-400 flex items-center justify-center text-sm"
                             ></span>
                         </template>
